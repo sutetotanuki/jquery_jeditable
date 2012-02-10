@@ -104,7 +104,7 @@
         settings.autowidth  = 'auto' == settings.width;
         settings.autoheight = 'auto' == settings.height;
         
-        return this.each(function() {
+        var ret = this.each(function() {
                         
             /* Save this to self because this changes when scope changes. */
             var self = this;  
@@ -392,6 +392,7 @@
             };            
         });
 
+      return ret;
     };
 
 
