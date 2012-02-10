@@ -171,7 +171,9 @@
                 }
                                 
                 self.editing    = true;
-                self.revert     = $(self).html();
+                /* Show encoded html */
+                //self.revert     = $(self).html();
+                self.revert = $(self).text();
                 $(self).html('');
 
                 /* Create the form object. */
@@ -346,7 +348,9 @@
                                   url     : settings.target,
                                   success : function(result, status) {
                                       if (ajaxoptions.dataType == 'html') {
-                                        $(self).html(result);
+                                        /* Do html encode */
+                                        // $(self).html(result);
+                                        $(self).text(result);
                                       }
                                       self.editing = false;
                                       callback.apply(self, [result, settings]);
@@ -379,8 +383,10 @@
                 /* Prevent calling reset twice when blurring. */
                 if (this.editing) {
                     /* Before reset hook, if it returns false abort reseting. */
-                    if (false !== onreset.apply(form, [settings, self])) { 
-                        $(self).html(self.revert);
+                    if (false !== onreset.apply(form, [settings, self])) {
+                        /* Show encoded html */
+                        //$(self).html(self.revert);
+                        $(self).text(self.revert);
                         self.editing   = false;
                         if (!$.trim($(self).html())) {
                             $(self).html(settings.placeholder);
